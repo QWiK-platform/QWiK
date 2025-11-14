@@ -18,7 +18,7 @@ const Header = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          QWIK
+          <img src="/logo-qwik.svg" alt="QWIK" />
         </Link>
 
         {isLoggedIn ? (

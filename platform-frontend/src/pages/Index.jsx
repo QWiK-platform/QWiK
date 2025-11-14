@@ -1,8 +1,9 @@
 import React from "react";
+import "./Index.css";
 
 const Index = () => {
   return (
-    <div>
+    <div className="index">
       <h1>Index Page</h1>
     </div>
   );

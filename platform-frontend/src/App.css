@@ -74,3 +74,12 @@ a {
   --bg-color: #fdf9f5;
   --sub-bg-color: #efe0d1;
 }
+
+/* layout setting */
+section {
+  padding-top: 100px;
+}
+.wrap {
+  width: 1200px;
+  margin: 0 auto;
+}

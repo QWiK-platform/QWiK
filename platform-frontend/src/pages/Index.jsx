@@ -3,9 +3,11 @@ import "./Index.css";
 
 const Index = () => {
   return (
-    <div className="index">
-      <h1>Index Page</h1>
-    </div>
+    <section className="index-section">
+      <div className="wrap">
+        <h1>Index Page</h1>
+      </div>
+    </section>
   );
 };
 

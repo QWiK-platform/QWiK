@@ -197,10 +197,6 @@ resource "aws_route_table_association" "public_az3" {
 resource "aws_route_table" "qwik_private_rt" {
   vpc_id = aws_vpc.qwik_vpc.id
 
-  route {
-
-  }
-
   tags = {
     Name = "QWiK-Private-RouteTable"
   }

@@ -1,4 +1,4 @@
-# iac/terraform/vpc.tf
+# iac/base/vpc.tf
 
 # -------------------------
 # VPC (10.0.0.0/16)

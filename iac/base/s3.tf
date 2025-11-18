@@ -1,4 +1,4 @@
-# iac/terraform/s3.tf
+# iac/base/s3.tf
 
 # -------------------------
 # S3 Bucket

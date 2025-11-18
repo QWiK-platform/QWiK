@@ -1,4 +1,4 @@
-# iac/terraform/outputs.tf
+# iac/base/outputs.tf
 
 output "qwik_frontend_url" {
   description = "The domain name of the QWiK Frontend CDN"

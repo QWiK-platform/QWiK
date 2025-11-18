@@ -1,4 +1,4 @@
-# iac/terraform/main.tf
+# iac/base/main.tf
 
 # 1. Terraform 버전 및 필수 프로바이더 설정
 terraform {

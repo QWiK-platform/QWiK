@@ -1,0 +1,25 @@
+# iac/terraform/outputs.tf
+
+output "qwik_frontend_url" {
+  description = "The domain name of the QWiK Frontend CDN"
+  # 생성된 CloudFront의 도메인 이름을 출력
+  value = "https://${aws_cloudfront_distribution.qwik_frontend_cdn.domain_name}"
+}
+
+# -------------------------
+# CI/CD
+# -------------------------
+
+# S3 버킷 이름
+# CI/CD 파이프라인이 어느 버킷에 업로드할지 알 수 있도록 버킷 이름을 출력
+output "qwik_frontend_bucket_id" {
+  description = "The ID (name) of the QWiK Frontend S3 bucket"
+  value = aws_s3_bucket.qwik_frontend_bucket.id
+}
+
+# CloudFront ID
+# CI/CD 파이프라인이 어느 CDN의 캐시를 삭제할지 알 수 있도록 CDN ID를 출력합니다.
+output "qwik_frontend_cdn_id" {
+  description = "The ID of the QWiK Frontend CloudFront distribution"
+  value = aws_cloudfront_distribution.qwik_frontend_cdn.id
+}

@@ -190,40 +190,6 @@ resource "aws_route_table_association" "public_az3" {
 }
 
 # -------------------------
-# Elastic IP (EIP)
-# -------------------------
-
-resource "aws_eip" "qwik_nat_eip" {
-  domain = "vpc"
-
-  # IGW -> EIP 순으로 생성되도록 순서 보장
-  depends_on = [aws_internet_gateway.qwik_igw]
-
-  tags = {
-    Name = "QWiK-NAT-EIP"
-  }
-}
-
-# -------------------------
-# NAT Gateway (NAT GW)
-# -------------------------
-
-resource "aws_nat_gateway" "qwik_nat_gw" {
-  # EIP 할당
-  allocation_id = aws_eip.qwik_nat_eip.id
-
-  # AZ 1의 public subnet에 배치
-  subnet_id = aws_subnet.qwik_public_subnet_az1.id
-
-  # IGW -> NAT 순으로 생성되도록 순서 보장
-  depends_on = [aws_internet_gateway.qwik_igw]
-
-  tags = {
-    Name = "QWiK-NAT-GW"
-  }
-}
-
-# -------------------------
 # Route Table
 # Private Subnet -> NAT Gateway
 # -------------------------
@@ -232,8 +198,7 @@ resource "aws_route_table" "qwik_private_rt" {
   vpc_id = aws_vpc.qwik_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0" # 모든 범위
-    nat_gateway_id = aws_nat_gateway.qwik_nat_gw.id # NAT로 라우팅
+
   }
 
   tags = {

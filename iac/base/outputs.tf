@@ -1,4 +1,4 @@
-# iac/terraform/outputs.tf
+# iac/base/outputs.tf
 
 output "qwik_frontend_url" {
   description = "The domain name of the QWiK Frontend CDN"
@@ -22,4 +22,32 @@ output "qwik_frontend_bucket_id" {
 output "qwik_frontend_cdn_id" {
   description = "The ID of the QWiK Frontend CloudFront distribution"
   value = aws_cloudfront_distribution.qwik_frontend_cdn.id
+}
+
+# compute 스택이 참조할 VPC ID
+output "vpc_id" {
+  description = "The ID of the QWiK VPC"
+  value = aws_vpc.qwik_vpc.id
+}
+
+# compute 스택이 NAT GW를 배치할 Public Subnet 1의 ID
+output "public_subnet_az1_id" {
+  description = "The ID of the Public Subnet in AZ1"
+  value = aws_subnet.qwik_public_subnet_az1.id
+}
+
+# compute 스택이 경로를 추가할 Private Route Table의 ID
+output "private_route_table_id" {
+  description = "The ID of the Private Route Table"
+  value = aws_route_table.qwik_private_rt.id
+}
+
+# compute 스택(EKS)이 사용할 Private Subnet ID 목록
+output "private_subnet_ids" {
+  description = "List of Private Subnet IDs"
+  value = [
+    aws_subnet.qwik_private_subnet_az1.id,
+    aws_subnet.qwik_private_subnet_az2.id,
+    aws_subnet.qwik_private_subnet_az3.id,
+  ]
 }

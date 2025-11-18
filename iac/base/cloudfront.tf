@@ -1,4 +1,4 @@
-# iac/terraform/cloudfront.tf
+# iac/base/cloudfront.tf
 
 # -------------------------
 # Origin Access Identity (OAI)

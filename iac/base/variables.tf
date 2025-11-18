@@ -1,4 +1,4 @@
-# iac/terraform/variables.tf
+# iac/base/variables.tf
 
 variable "aws_region" {
   description = "AWS Region"

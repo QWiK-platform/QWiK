@@ -1,4 +1,4 @@
-# iac/terraform/main.tf
+# iac/base/main.tf
 
 # 1. Terraform 버전 및 필수 프로바이더 설정
 terraform {
@@ -14,7 +14,7 @@ terraform {
   # 2. S3 백엔드 설정
   backend "s3" {
     bucket         = "qwik-terraform-state"
-    key            = "global/terraform.tfstate"           # S3 버킷 내에 상태 파일이 저장될 경로
+    key            = "base/terraform.tfstate"           # S3 버킷 내에 상태 파일이 저장될 경로
     region         = "ap-northeast-2"                     # S3 버킷이 있는 리전 (서울)
     dynamodb_table = "qwik-terraform-lock"                # 2단계에서 만든 DynamoDB 테이블 이름
     encrypt        = true                                 # 상태 파일 암호화

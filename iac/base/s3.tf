@@ -7,7 +7,7 @@
 # 프론트엔드 정적 파일 호스팅용 S3 버킷
 
 resource "aws_s3_bucket" "qwik_frontend_bucket" {
-  bucket = "qwik-frontend-bucket"
+  bucket = var.qwik_frontend_bucket_name
 
   tags = {
     Name = "QWiK-Frontend-Bucket"

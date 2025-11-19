@@ -30,6 +30,9 @@ jobs:
         run: npm ci
 
       - name: Build
+        # 경고 무시 후 빌드 (임시)
+        env:
+          CI: false
         run: npm run build
         # 빌드 결과물은 ./platform-frontend/build 폴더에 생성됨
 

@@ -7,7 +7,7 @@ variable "aws_region" {
 }
 
 variable "qwik_frontend_bucket_name" {
-  description = "프론트엔드 버킷명"
+  description = "FE bucket name"
   type = string
   default = "qwik-frontend-bucket-2025"
 }

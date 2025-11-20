@@ -5,7 +5,7 @@ on:
     branches:
       - dev # dev 브랜치에 푸시될 때
     paths:
-      - 'platform-backend/app/**' # 백엔드 폴더가 변경되었을 때만 실행
+      - 'platform-backend/**' # 백엔드 폴더가 변경되었을 때만 실행
       - '.github/workflows/deploy-backend-api.yml'
 
 env:
@@ -21,7 +21,7 @@ jobs:
     # 작업 디렉터리 설정
     defaults:
       run:
-        working-directory: ./platform-backend/app
+        working-directory: ./platform-backend
 
     steps:
       # 코드 가져오기

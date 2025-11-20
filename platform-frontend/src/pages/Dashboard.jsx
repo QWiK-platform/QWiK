@@ -86,7 +86,7 @@ const Dashboard = () => {
         <div className="info-text-container">
           <h3 className="title-text">USER NAME 님의 서비스 이용 현황입니다.</h3>
           <p>
-            배포한 프로젝트는 N개 이며, 현재 활성화 프로젝트는 N개, 비활성화
+            배포한 프로젝트는 N개이며, 현재 활성화 프로젝트는 N개, 비활성화
             프로젝트는 N개입니다.
           </p>
         </div>

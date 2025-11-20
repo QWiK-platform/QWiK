@@ -29,9 +29,3 @@ async def root():
         "message": "QWiK API is running! 🚀",
         "status": "healthy"
     }
-
-
-@app.on_event("startup")
-async def startup_event():
-    print("🚀 Started!")
-    print(f"📝 Docs: http://localhost:8000/docs")

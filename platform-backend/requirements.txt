@@ -6,13 +6,11 @@ python-multipart==0.0.6
 # 데이터베이스 (PostgreSQL)
 sqlalchemy==2.0.23
 psycopg2-binary==2.9.9
-alembic==1.12.1
 
 # 인증 & 보안
 pyjwt==2.8.0
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-python-multipart==0.0.6
 
 # 환경변수
 python-dotenv==1.0.0
@@ -23,6 +21,3 @@ httpx==0.25.2
 # 데이터 검증
 pydantic==2.5.0
 pydantic-settings==2.1.0
-
-# CORS
-fastapi-cors==0.0.6

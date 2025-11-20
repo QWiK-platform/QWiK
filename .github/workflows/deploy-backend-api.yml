@@ -1,0 +1,59 @@
+name: Deploy Backend API (Dev)
+
+on:
+  push:
+    branches:
+      - dev # dev 브랜치에 푸시될 때
+    paths:
+      - 'platform-backend/api/**' # 백엔드 폴더가 변경되었을 때만 실행
+      - '.github/workflows/deploy-backend-api.yml'
+
+env:
+  AWS_REGION: ap-northeast-2
+  # iac/base/ecr.tf 에서 만든 리포지토리 이름과 같게 설정
+  ECR_REPOSITORY: qwik-api-repo-dev
+  IMAGE_TAG: latest
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    # 작업 디렉터리 설정
+    defaults:
+      run:
+        working-directory: ./platform-backend/api
+
+    steps:
+      # 코드 가져오기
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # AWS 자격 증명 설정
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Amazon ECR 로그인 (Docker Login 자동화)
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # Docker 이미지 빌드 및 푸시
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          # 이미지 빌드
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          
+          # 커밋 해시로 태그 생성
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
+          
+          # ECR로 push
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
+          
+          echo "Image pushed successfully: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

@@ -28,7 +28,8 @@ resource "aws_lb_target_group" "k8s_tg" {
   vpc_id   = data.terraform_remote_state.base.outputs.vpc_id
   
   health_check {
-    path = "/healthz" # (나중에 애플리케이션에 맞게 수정 가능)
+    # path = "/healthz" # (나중에 애플리케이션에 맞게 수정 가능)
+    path = "/"
     port = 30080
   }
 }

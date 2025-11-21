@@ -74,3 +74,9 @@ output "rds_db_name" {
   description = "The name of the database"
   value       = aws_db_instance.qwik_db.db_name
 }
+
+# SQS
+output "sqs_queue_url" {
+  description = "The URL of the SQS Queue"
+  value       = aws_sqs_queue.qwik_job_queue.url
+}

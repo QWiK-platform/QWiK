@@ -36,6 +36,17 @@ output "public_subnet_az1_id" {
   value       = aws_subnet.qwik_public_subnet_az1.id
 }
 
+# 나머지 public subnet의 id
+output "public_subnet_az2_id" {
+  description = "The ID of the Public Subnet in AZ2"
+  value       = aws_subnet.qwik_public_subnet_az2.id
+}
+
+output "public_subnet_az3_id" {
+  description = "The ID of the Public Subnet in AZ3"
+  value       = aws_subnet.qwik_public_subnet_az3.id
+}
+
 # compute 스택이 경로를 추가할 Private Route Table의 ID
 output "private_route_table_id" {
   description = "The ID of the Private Route Table"
@@ -62,4 +73,10 @@ output "rds_endpoint" {
 output "rds_db_name" {
   description = "The name of the database"
   value       = aws_db_instance.qwik_db.db_name
+}
+
+# SQS
+output "sqs_queue_url" {
+  description = "The URL of the SQS Queue"
+  value       = aws_sqs_queue.qwik_job_queue.url
 }

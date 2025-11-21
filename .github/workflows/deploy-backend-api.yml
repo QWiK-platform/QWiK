@@ -57,3 +57,12 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
           
           echo "Image pushed successfully: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Deploy to K8s (Restart Deployment)
+        run: |
+          # AWS SSM을 통해 Master Node에서 명령어 실행
+          aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --targets "Key=tag:Name,Values=QWiK-K8s-Master-dev" \
+            --parameters 'commands=["sudo -i kubectl rollout restart deployment/qwik-backend"]' \
+            --region ap-northeast-2
